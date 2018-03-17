@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage  NavigationPage.HasNavigationBar="false" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MapApiApp.Views.MainPage">
+     
+    <ContentPage.Content>
+        <StackLayout Padding="20,40,20,20">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Entry Keyboard="Numeric" Text="{Binding ZipCode, Mode=TwoWay}" Placeholder="Enter ZIP Code" HorizontalOptions="FillAndExpand" />
+                <Button Text="Get Info" Command="{Binding GetInfoCommand}" TextColor="#ffffff" BackgroundColor="#d53c61" WidthRequest="90" />
+            </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}" />
+            <Frame HasShadow="true" BackgroundColor="#f3a9a7" IsVisible="{Binding IsErrorMsg}" HorizontalOptions="FillAndExpand">
+                <Label TextColor="#e85349" FontAttributes="Bold" Text="Data Not Found" />
+            </Frame>
+            <Frame HasShadow="true" IsVisible="{Binding IsShowData}" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="City:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.name}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Country:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.sys.country}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Temperature:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.main.temp}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Humidity:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.main.humidity}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Weather Main Status:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.weather[0].main}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Weather Status:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.weather[0].description}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Weather Icon:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Image Source="{Binding Icon}" WidthRequest="50" HeightRequest="50" />
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="Wind Speed:" />
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="EndAndExpand">
+                            <Label Text="{Binding MainModel.wind.speed}" />
+                        </StackLayout>
+                    </StackLayout>
+                    <Button Text="View Detail" Command="{Binding NavigateMapPage}" FontSize="14" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" TextColor="#ffffff" BackgroundColor="#d53c61" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
